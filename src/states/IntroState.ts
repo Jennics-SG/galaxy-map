@@ -1,5 +1,6 @@
 import { SplitText } from "pixi.js";
 import BaseState from "./BaseState";
+import MapState from "./MapState";
 import gsap from "gsap";
 
 export default class IntroState extends BaseState {
@@ -41,22 +42,26 @@ export default class IntroState extends BaseState {
         this._text.alpha = 1;
         await gsap.to(this._text.chars, {
             alpha: 1,
-            duration: 0.3,
+            duration: 0.2,
             stagger: 0.2
         });
     }
 
     protected async fadeOut() {
-        await gsap.to(this._text.scale, {
-            duration: 0.25,
-            y: 0,
-            x: 1.5,
-            // ease: Back.easeIn
-        });
+        return new Promise<void>(async (res) => {
+            await gsap.to(this._text.scale, {
+                duration: 0.25,
+                y: 0,
+                x: 1.5,
+            })
+            res();
+        })
+
     }
 
     public async exit() {
         await this.fadeOut();
         this.app.stage.removeChild(this);
+        await this.app.stateManager.loadNewState(new MapState(this.app));
     }
 }

@@ -1,6 +1,7 @@
 import { Assets } from "pixi.js";
 import BaseState from "./BaseState";
 import IntroState from "./IntroState";
+// import MapState from "./MapState";
 
 export default class LoadingState extends BaseState {
 
@@ -10,7 +11,7 @@ export default class LoadingState extends BaseState {
     }
 
     protected async loadAssets() {
-        Assets.add({alias: "galaxy", src: "/public/galaxy.png"});
+        Assets.add({alias: "galaxy", src: "/galaxy.png"});
         await Assets.load("galaxy");
         this.exit();
     }
