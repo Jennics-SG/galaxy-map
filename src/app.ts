@@ -1,0 +1,22 @@
+import { Application } from "pixi.js";
+import StateManager from "./stateManager";
+import LoadingState from "./states/LoadingState";
+
+export default class App extends Application {
+
+    public stateManager = new StateManager();
+
+    constructor() {
+        super();
+    }
+
+    async init() {
+        await super.init({
+            width: 1920,
+            height: 1080,
+            resizeTo: window
+        });
+
+        this.stateManager.loadNewState(new LoadingState(this))
+    }
+}
