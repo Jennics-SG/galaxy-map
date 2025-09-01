@@ -22,17 +22,19 @@ vec2 quintic(vec2 p) {
   return p * p * p * (10.0 + p * (-15.0 + p * 6.0));
 }
 
-vec3 purpleGradient(float t) {
-    vec3 black = vec3(0.0, 0.0, 0.0);
-    vec3 pink = vec3(1.0, 0.2, 0.8);
-    vec3 purple = vec3(0.5, 0.0, 1.0);
+vec3 nebulaGradient(float t) {
+    vec3 black  = vec3(0.0, 0.0, 0.0);
+    vec3 pink   = vec3(0.5, 0.25, 0.4);
+    vec3 purple = vec3(0.35, 0.2, 0.55);
+    vec3 blue   = vec3(0.1, 0.3, 0.55);
 
-    // Use smoothstep to favor black at low values
-    // if (t < 0.3) {
-        // return mix(purple, pink, (t - 0.3) / 0.7); // 0.3–1 → pink to purple
-    // } else {
-        return mix(pink, black, clamp(t / 0.8, 0.0, 1.0)); // first 0–0.3 → black to pink
-    // }
+    if (t < 0.3) {
+        return mix(blue, pink, smoothstep(0.0, 0.3, t));
+    } else if (t < 0.5) {
+        return mix(pink, purple, smoothstep(0.3, 0.5, t));
+    } else {
+        return mix(purple, black, smoothstep(0.0, 1.0, t));
+    }
 }
 
 float perlinNoise(vec2 uv) {
@@ -85,10 +87,10 @@ float fbmPerlinNoise(vec2 uv) {
 void main() {
     vec2 uv = vTextureCoord;
 
-    uv = uv * 12.0;
+    uv = uv *4.0;
     float pNoise = fbmPerlinNoise(uv);
     float t = clamp(pNoise * 0.5 + 0.5, 0.0, 1.0);
-    vec3 nebulaColour = purpleGradient(t);
+    vec3 nebulaColour = nebulaGradient(t);
 
     float starNoise = clamp(perlinNoise(uv * 60.0) * 0.5 + 0.5, 0.0, 1.0);
     float star = step(0.8, starNoise); // lower threshold → more stars
