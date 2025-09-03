@@ -11,8 +11,23 @@ export default class LoadingState extends BaseState {
     }
 
     protected async loadAssets() {
-        Assets.add({alias: "galaxy", src: "/galaxy.png"});
+        Assets.add({alias: "galaxy", src: "/assets/galaxy.png"});
         await Assets.load("galaxy");
+
+        Assets.add({alias: "location", src: "/assets/location.png"});
+        await Assets.load("location");
+
+        Assets.add({alias: "exit", src: "/assets/exit.png"});
+        await Assets.load("exit");
+
+        Assets.addBundle("fonts", {
+            main: {
+                src: "/assets/0xProto.ttf",
+                data: { family: "main" }
+            }
+        });
+        await Assets.loadBundle("fonts");
+
         this.exit();
     }
 

@@ -84,22 +84,27 @@ float fbmPerlinNoise(vec2 uv) {
     return fbmNoise;
 }
 
+float normalise(float v) {
+  return clamp(v * 0.5 + 0.5, 0.0, 1.0);
+}
+
 void main() {
     vec2 uv = vTextureCoord;
 
     uv = uv *4.0;
     float pNoise = fbmPerlinNoise(uv);
-    float t = clamp(pNoise * 0.5 + 0.5, 0.0, 1.0);
+    float t = normalise(pNoise);
     vec3 nebulaColour = nebulaGradient(t);
 
-    float starNoise = clamp(perlinNoise(uv * 60.0) * 0.5 + 0.5, 0.0, 1.0);
+    float starDensity = 90.0;
+    float starNoise = normalise(perlinNoise(uv * starDensity));
     float star = step(0.8, starNoise); // lower threshold → more stars
 
     // Subtle twinkle
-    float twinkle = 0.9 + 0.1 * sin(uTime * 0.3 + starNoise * 20.0);
+    float twinkle = 0.8 + 0.1 * sin(uTime * 0.3 + starNoise * 20.0);
 
     // Star color: purple-tinted if in nebula, white in dark
-    vec3 starColour = (t > 0.5) ? nebulaColour * 1.5 : vec3(1.0);
+    vec3 starColour = (t > 0.95) ? nebulaColour * 1.5 : vec3(1.0);
 
     vec3 finalColour = nebulaColour + star * starColour * twinkle;
 

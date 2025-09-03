@@ -25,7 +25,7 @@ export default class StarryBackground extends Container{
 
     protected buildSelf() {
         this._bg = new Graphics();
-        this._bg.rect(0, 0, this._app.screen.width, this._app.screen.height);
+        this._bg.rect(0, 0, this._app.renderer.width, this._app.screen.height);
         this._bg.fill("#000000");
         this.addChild(this._bg);
 
@@ -38,7 +38,7 @@ export default class StarryBackground extends Container{
             glProgram: program,
             resources: {
                 uniforms: {
-                    uResolution: {value: [this._app.screen.width, this._app.screen.height], type: 'vec2<f32>'},
+                    uResolution: {value: [this._app.renderer.width, this._app.screen.height], type: 'vec2<f32>'},
                     uTime: {value: 0, type: 'f32'},
                     uAlpha: {value: 0.0, type: 'f32'}
                 }

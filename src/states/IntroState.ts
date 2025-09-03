@@ -27,12 +27,13 @@ export default class IntroState extends BaseState {
             style: {
                 fontSize: 54,
                 fill: "#ffffff",
-                align: "center"
+                align: "center",
+                fontFamily: "main"
             },
             charAnchor: 0.5,
         });
         this._text.pivot.set(this._text.width / 2, this._text.height / 2)
-        this._text.position.set(this.app.screen.width / 2, this.app.screen.height / 2)
+        this._text.position.set(this.app.renderer.width / 2, this.app.screen.height / 2)
         this._text.alpha = 0;
         this.addChild(this._text)
     }
@@ -43,7 +44,7 @@ export default class IntroState extends BaseState {
         await gsap.to(this._text.chars, {
             alpha: 1,
             duration: 0.2,
-            stagger: 0.2
+            stagger: 0.125
         });
     }
 
