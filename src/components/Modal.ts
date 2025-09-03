@@ -51,7 +51,7 @@ export default class Modal extends Container {
         const screenW = this._app.renderer.width;
         if (screenW <= 480) {
             this._width = 290;
-            this._height = 480;
+            this._height = 520;
             this._headerFont = 22;
             this._bodyFont = 16;
         } else if (screenW <= 768) {
@@ -78,7 +78,6 @@ export default class Modal extends Container {
     }
 
     protected buildSelf() {
-        // const filter = new GlowFilter({color: "#c0c0c0", outerStrength: 1, quality: 0.2, distance: 20});
 
         const background = new Graphics();
         background.roundRect(0, 0, this._width, this._height);
@@ -90,8 +89,15 @@ export default class Modal extends Container {
         background.pivot.set(this._width / 2, this._height / 2);
         this.addChild(background);
 
+        this.buildPlanet();
+        this.buildHeader();
+        this.buildBody();
+
+        const exitXDivisor = this._app.screen.width <= 1024 ?
+            1.5 : 2;
+
         const exit = new Sprite(Assets.get("exit"));
-        const exitX = this._width / 2 - exit.width / 2;
+        const exitX = this._width / 2 - (exit.width / exitXDivisor);
         const exitY = -this._height / 2 + exit.height;
         exit.anchor.set(0.5);
         exit.position.set(exitX, exitY);
@@ -103,12 +109,6 @@ export default class Modal extends Container {
             exit.scale.set(scaleFactor);
         }
         this.addChild(exit);
-
-        this.buildPlanet();
-        this.buildHeader();
-        this.buildBody();
-
-        // this.filters = [filter];
     }
 
     protected buildHeader() {
@@ -119,12 +119,18 @@ export default class Modal extends Container {
                 fill: "#ffffff",
                 // align: "right",
                 fontFamily: "main"
-            }
+            },
+            resolution: 2
         })
         this._header.anchor.set(0, 0.5);
 
         const headerX = -this._width / 4;
         const headerY = -(this._height / 2) + this._header.height;
+
+        if (this._header.width > this._width / 2) {
+            const scaleFactor = (this._width - 50) / 2  / this._header.width;
+            this._header.style.fontSize *= scaleFactor;
+        }
 
         this._header.position.set(headerX, headerY);
         this.addChild(this._header)
@@ -138,13 +144,15 @@ export default class Modal extends Container {
                 fill: "#ffffff",
                 fontFamily: "main",
                 wordWrap: true,
-                wordWrapWidth: this._width * 0.75
-            }
+                wordWrapWidth: this._width * 0.75,
+            },
+            resolution: 2
         });
 
-        const bodyX = -(this._width / 2.5);
+        const bodyX = 0;
         const bodyY = -(this._height / 3);
 
+        this._body.anchor.set(0.5, 0);
         this._body.position.set(bodyX, bodyY);
         this.addChild(this._body);
     }

@@ -1,7 +1,12 @@
 {
-    "AboutMe": {
+    "About Me": {
         "header": "Hey There 👋",
-        "body": "I'm Jimy, a passionate full stack developer with a strong background in Web Development and using PixiJs to create interactive applications.💫\n\nFeel free to explore the rest of the map by clicking on any of the Icons! Each planet will tell you a little about me.👨‍🚀\n\nSee you around, Traveller. 🚀",
+        "body": "I'm Jimy, a passionate full stack developer with a strong background in Web Development and using PixiJs to create interactive applications.💫\n\nFeel free to explore the rest of the map, or download my CV.👨‍🚀\n\nSee you around, Traveller. 🚀",
         "tint": "#78acff"
+    },
+    "Greenspan Projects": {
+        "header": "Greenspan Projects",
+        "body": "I'm currently undertaking my juniorship with Greenspan Projects Ltd. So far I have been for development helping bring Puttify v2 to release. This included introducing a logging system, UI developments such as a leaderboard and helping with on-site deployments.\n\nI am also responsible for the development of DigiScoring, a plug & play system for any Mini-Golf course that can be customised for vanues branding.",
+        "tint": "#00ff00"
     }
 }

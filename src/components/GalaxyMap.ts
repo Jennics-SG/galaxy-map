@@ -1,7 +1,7 @@
 import {
     Container, Assets, Sprite,
     GlProgram, Filter, defaultFilterVert,
-    EventEmitter
+    EventEmitter, Point
 } from "pixi.js";
 import App from "../app";
 import gsap from "gsap";
@@ -28,11 +28,20 @@ export default class GalaxyMap extends Container {
             x: this._targetScale,
             y: this._targetScale
         });
+
+        await gsap.to(this._entries, {
+            duration: 1,
+            delay: 0.3,
+            stagger: 0.2,
+            alpha: 1,
+            ease: "bounce.out"
+        })
+
         this.startRotation();
     }
 
     public startRotation() {
-        const dur = 360/2
+        const dur = 360*2
         // Rotate continuously
         gsap.to(this, {
             duration: dur,
@@ -106,13 +115,21 @@ export default class GalaxyMap extends Container {
 
         const keys = this._app.dataManager.keys;
         for (const key of keys) {
-            const entry = new Entry(key);
-            entry.position.set(this._galaxy.position.x + 100, this._galaxy.position.y + 100);
-            // entry.visible = false;
+            const entry = new Entry(this._app, key);
+            entry.position.copyFrom(this.getRandomPosition());
+            entry.alpha = 0;
             entry.onpointerdown= _ => this.onEntryDown(entry.key);
             this.addChild(entry);
             this._entries.push(entry);
         }
+    }
+
+    protected getRandomPosition() {
+        // Generate a random point within the galaxy sprite
+        return new Point(
+            this._galaxy.x + Math.floor(Math.random() * this._galaxy.width / 4) - this._galaxy.width / 8,
+            this._galaxy.y + (Math.floor(Math.random() * this._galaxy.height / 4) - this._galaxy.height / 8)
+        )
     }
 
     protected onEntryDown(key: string) {

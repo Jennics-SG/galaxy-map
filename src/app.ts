@@ -16,8 +16,9 @@ export default class App extends Application {
         await super.init({
             width: 1920,
             height: 1080,
+            // resolution: 2,
             resizeTo: window,
-            antialias: true
+            antialias: true,
         });
 
         await this.dataManager.loadData()
