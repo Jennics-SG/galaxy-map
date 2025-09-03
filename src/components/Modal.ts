@@ -1,7 +1,8 @@
-import { Container, Graphics, Text, Point, Sprite, Assets } from "pixi.js";
+import { Container, Graphics, Text, Point, Sprite, Assets, GlProgram, defaultFilterVert, Filter } from "pixi.js";
 import { GlowFilter } from "pixi-filters";
 import gsap from "gsap";
 import App from "../app";
+import planet from "../shaders/planet.frag?raw";
 
 export default class Modal extends Container {
 
@@ -14,12 +15,14 @@ export default class Modal extends Container {
     protected _header: Text;
     protected _body: Text;
     protected _planet: Graphics;
+    protected _planetFilter: Filter;
 
     public async show(key: string) {
         const data = this._app.dataManager.getData(key);
         this._header.text = data.header;
         this._body.text = data.body;
         this._planet.tint = data.tint;
+        this._planet.filters = [this._planetFilter];
 
         const target = new Point(this._app.screen.width / 2, this._app.screen.height / 2);
 
@@ -40,6 +43,7 @@ export default class Modal extends Container {
             y: this._app.screen.height + this.height
         });
         this.visible = false;
+        this._planet.filters = null;
     }
 
     constructor(app: App) {
@@ -158,6 +162,16 @@ export default class Modal extends Container {
     }
 
     protected buildPlanet() {
+
+        const program = new GlProgram({
+            vertex: defaultFilterVert,
+            fragment: planet
+        })
+
+        this._planetFilter = new Filter({
+            glProgram: program
+        });
+
         const radius = Math.min(this._width / 7, this._height / 10);
         this._planet = new Graphics();
         this._planet.circle(0, 0, radius);

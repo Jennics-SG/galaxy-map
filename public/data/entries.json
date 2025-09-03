@@ -7,6 +7,16 @@
     "Greenspan Projects": {
         "header": "Greenspan Projects",
         "body": "I'm currently undertaking my juniorship with Greenspan Projects Ltd. So far I have been for development helping bring Puttify v2 to release. This included introducing a logging system, UI developments such as a leaderboard and helping with on-site deployments.\n\nI am also responsible for the development of DigiScoring, a plug & play system for any Mini-Golf course that can be customised for vanues branding.",
-        "tint": "#00ff00"
+        "tint": "#34eb55"
+    },
+    "Winchester University": {
+        "header": "Winchester University",
+        "body": "I have achieved a 1:1 in my studies at Winchester. So far I have created three large scale applications using JavaScript, Java & Python, and taken courses on Operating Systems and Cyber Security. For my dissertation I created an open source game engine, BangJs, which used PixiJs, Box2D and GSAP.",
+        "tint": "#991df2"
+    },
+    "Lecturing": {
+        "header": "South Hampshire College Group",
+        "body": "Being a Computing Lecturer with SHCG has allowed me to Develop critical skills in taking responsibility for a cohort of learners, through developing their curriculum and acting as a project manager for their larger projects. As part of my role as a lecturer I have built a deep understanding of Unreal Engine and Blender to teach these subjects to my students.",
+        "tint": "#f79f6f"
     }
 }

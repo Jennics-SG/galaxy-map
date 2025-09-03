@@ -1,9 +1,12 @@
 import { SplitText } from "pixi.js";
 import BaseState from "./BaseState";
 import MapState from "./MapState";
+import nebula from "../shaders/nebula.frag?raw"
 import gsap from "gsap";
 
 export default class IntroState extends BaseState {
+
+    protected _backgroundText: SplitText;
     protected _text: SplitText;
 
     public async enter() {
@@ -11,6 +14,7 @@ export default class IntroState extends BaseState {
         this.visible = true;
         this.app.stage.addChild(this);
         await this.animateText();
+        await new Promise(res => gsap.delayedCall(1.5, res));
         this.exit();
     }
 
@@ -21,6 +25,19 @@ export default class IntroState extends BaseState {
                 child = null;
             });
         }
+
+        this._backgroundText = new SplitText({
+            text: nebula,
+            style: {
+                fontSize: 16,
+                fill: "#ffffff",
+                fontFamily: "main",
+            }
+        });
+        this._backgroundText.alpha = 0.4;
+        this._backgroundText.chars.forEach(char => char.visible = false)
+        this.addChild(this._backgroundText);
+
 
         this._text = new SplitText({
             text: "WELCOME\nTRAVELLER",
@@ -41,10 +58,25 @@ export default class IntroState extends BaseState {
     protected async animateText() {
         this._text.chars.forEach(char => char.alpha = 0)
         this._text.alpha = 1;
+
+        const target = -this.app.screen.height / 2
+        await Promise.all([
+            gsap.to(this._backgroundText.chars, {
+                visible: true,
+                stagger: 0.00125
+            }),
+            gsap.to(this._backgroundText, {
+                duration: 2.5,
+                y: target,
+                delay: 0.5
+            })
+        ]);
+        this._backgroundText.visible = false;
+
         await gsap.to(this._text.chars, {
             alpha: 1,
-            duration: 0.2,
-            stagger: 0.125
+            duration: 0.1,
+            stagger: 0.05
         });
     }
 
