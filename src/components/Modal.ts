@@ -123,6 +123,8 @@ export default class Modal extends Container {
                 fill: "#ffffff",
                 // align: "right",
                 fontFamily: "main"
+                wordWrap: true,
+                wordWrapWidth: this._width / 2
             },
             resolution: 2
         })
