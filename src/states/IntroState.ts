@@ -1,7 +1,6 @@
-import { FillGradient, SplitText, Text } from "pixi.js";
+import { SplitText, Text } from "pixi.js";
 import BaseState from "./BaseState";
 import MapState from "./MapState";
-import galaxy from "../shaders/galaxy.frag?raw";
 import nebula from "../shaders/nebula.frag?raw";
 import gsap from "gsap";
 import App from "../app";
@@ -10,7 +9,6 @@ export default class IntroState extends BaseState {
 
     protected _codeFontSize: number;
     protected _codeOne: SplitText;
-    protected _codeTwo: SplitText;
     protected _successText: Text;
 
     protected _text: SplitText;
