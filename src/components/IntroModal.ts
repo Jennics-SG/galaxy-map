@@ -15,7 +15,7 @@ export default class IntroModal extends Modal {
 
     protected buildSelf() {
         super.buildSelf();
-        this.buildCVButton();
+        // this.buildCVButton();
     }
 
     protected buildCVButton() {

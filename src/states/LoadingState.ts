@@ -7,28 +7,33 @@ export default class LoadingState extends BaseState {
 
     public async enter() {
         console.log("Loading")
-        this.loadAssets();
+        this.load();
+    }
+
+    protected async load() {
+        await Promise.all([
+            this.loadAssets(),
+            this.app.dataManager.loadData()
+        ])
+        this.exit();
     }
 
     protected async loadAssets() {
-        Assets.add({alias: "galaxy", src: "/assets/galaxy.png"});
-        await Assets.load("galaxy");
-
-        Assets.add({alias: "location", src: "/assets/location.png"});
-        await Assets.load("location");
-
-        Assets.add({alias: "exit", src: "/assets/exit.png"});
-        await Assets.load("exit");
-
+        Assets.add([
+            {alias: "galaxy", src: "/assets/galaxy.png"},
+            {alias: "location", src: "/assets/location.png"},
+            {alias: "exit", src: "/assets/exit.png"}
+        ]);
         Assets.addBundle("fonts", {
             main: {
                 src: "/assets/0xProto.ttf",
                 data: { family: "main" }
             }
         });
-        await Assets.loadBundle("fonts");
-
-        this.exit();
+        await Promise.all([
+            Assets.load(["galaxy", "location", "exit"]),
+            Assets.loadBundle("fonts")
+        ])
     }
 
     public async exit() {

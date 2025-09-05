@@ -1,4 +1,4 @@
-import { Sprite, Container, Graphics, Text } from "pixi.js";
+import { Sprite, Container, Graphics, Text, Point } from "pixi.js";
 import { Assets } from "pixi.js";
 import App from "../app";
 
@@ -53,7 +53,10 @@ export default class Entry extends Container {
         textbox.position.set(this._icon.width / 2, -this._icon.height / 2)
         this.addChild(textbox);
 
-        text.position.copyFrom(textbox.position);
+        const textPosition = new Point().copyFrom(textbox.position);
+        textPosition.x += 5;
+
+        text.position.copyFrom(textPosition);
         this.addChild(text);
 
     }

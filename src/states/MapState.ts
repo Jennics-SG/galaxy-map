@@ -45,8 +45,7 @@ export default class MapState extends BaseState {
     }
 
     protected handleEntryDown(key: string) {
-        console.log("Showing modal with", key);
-        if (!this._modal) throw "no modal?"
+        if (!this._modal) throw "No generic modal exists"
 
         if (key == "About Me") {
             this._introModal.show();
@@ -57,6 +56,6 @@ export default class MapState extends BaseState {
     }
 
     public async exit() {
-
+        this._galaxyMap.filters = null;
     }
 }

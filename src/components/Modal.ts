@@ -1,5 +1,4 @@
 import { Container, Graphics, Text, Point, Sprite, Assets, GlProgram, defaultFilterVert, Filter } from "pixi.js";
-import { GlowFilter } from "pixi-filters";
 import gsap from "gsap";
 import App from "../app";
 import planet from "../shaders/planet.frag?raw";
@@ -66,8 +65,8 @@ export default class Modal extends Container {
         } else if (screenW <= 1024) {
             this._width = 700;
             this._height = 600;
-            this._headerFont = 34
-            this._bodyFont = 28;
+            this._headerFont = 32
+            this._bodyFont = 26;
         } else {
             this._width = 1020;
             this._height = 600;
@@ -156,9 +155,9 @@ export default class Modal extends Container {
         });
 
         const bodyX = 0;
-        const bodyY = -(this._height / 3);
+        const bodyY = (-this._body.height / 2) + this._header.height;
 
-        this._body.anchor.set(0.5, 0);
+        this._body.anchor.set(0.5);
         this._body.position.set(bodyX, bodyY);
         this.addChild(this._body);
     }

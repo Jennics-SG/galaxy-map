@@ -20,9 +20,6 @@ export default class App extends Application {
             resizeTo: window,
             antialias: true,
         });
-
-        await this.dataManager.loadData()
-
         this.stateManager.loadNewState(new LoadingState(this));
     }
 }

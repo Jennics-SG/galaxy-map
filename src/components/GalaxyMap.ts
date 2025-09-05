@@ -116,7 +116,7 @@ export default class GalaxyMap extends Container {
         const keys = this._app.dataManager.keys;
         for (const key of keys) {
             const entry = new Entry(this._app, key);
-            entry.position.copyFrom(this.getRandomPosition());
+            entry.position.copyFrom(this.generateEntryPosition());
             entry.alpha = 0;
             entry.onpointerdown= _ => this.onEntryDown(entry.key);
             this.addChild(entry);
@@ -124,12 +124,28 @@ export default class GalaxyMap extends Container {
         }
     }
 
-    protected getRandomPosition() {
-        // Generate a random point within the galaxy sprite
-        return new Point(
-            this._galaxy.x + Math.floor(Math.random() * this._galaxy.width / 4) - this._galaxy.width / 8,
-            this._galaxy.y + (Math.floor(Math.random() * this._galaxy.height / 4) - this._galaxy.height / 8)
-        )
+    protected generateEntryPosition() {
+        // Generate a random point within the galaxy sprite that isnt too close to another one
+        const positions = this._entries.map(e => e.position);
+
+        const getPoint = () => {
+            const newPosition = new Point(
+                this._galaxy.x + Math.floor(Math.random() * this._galaxy.width / 4) - this._galaxy.width / 8,
+                this._galaxy.y + (Math.floor(Math.random() * this._galaxy.height / 4) - this._galaxy.height / 8)
+            );
+
+            const isValid = positions.every(pos => {
+                const xDistance = newPosition.x - pos.x;
+                const yDistance = newPosition.y - pos.y;
+                const distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+                return distance >= 50;
+            });
+
+            
+            return isValid ? newPosition : getPoint()
+        }
+
+        return getPoint();
     }
 
     protected onEntryDown(key: string) {
