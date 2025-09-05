@@ -21,3 +21,8 @@ A shader can be used in the background with a noise map to create a purple nebul
 PIXI application
 State manager that ensures a state is unloaded before moving to a new state
 State manager will load new state before making it visible
+
+## TODO
+Make sure Entries cant spawn too close too eachother
+Add CRT filter to galaxy & modals
+Test mobile compatibility

@@ -98,7 +98,7 @@ export default class Modal extends Container {
         this.buildBody();
 
         const exitXDivisor = this._app.screen.width <= 1024 ?
-            1.5 : 2;
+            1.5 : 0.75;
 
         const exit = new Sprite(Assets.get("exit"));
         const exitX = this._width / 2 - (exit.width / exitXDivisor);
@@ -122,7 +122,7 @@ export default class Modal extends Container {
                 fontSize: this._headerFont,
                 fill: "#ffffff",
                 // align: "right",
-                fontFamily: "main"
+                fontFamily: "main",
                 wordWrap: true,
                 wordWrapWidth: this._width / 2
             },
