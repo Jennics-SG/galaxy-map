@@ -23,4 +23,5 @@ State manager that ensures a state is unloaded before moving to a new state
 State manager will load new state before making it visible
 
 ## TODO
-Test mobile compatibility
+SEO
+Create logo for favicon

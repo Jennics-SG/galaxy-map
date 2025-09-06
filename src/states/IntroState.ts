@@ -52,7 +52,7 @@ export default class IntroState extends BaseState {
         } 
 
         this._codeOne = new SplitText({
-            text: nebula,
+            text: nebula.slice(0, nebula.length / 2),
             style: codeTextStyle
         });
         this._codeOne.alpha = 0.4;

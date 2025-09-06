@@ -1,8 +1,6 @@
 import { Assets } from "pixi.js";
 import BaseState from "./BaseState";
 import IntroState from "./IntroState";
-// import MapState from "./MapState";
-
 export default class LoadingState extends BaseState {
 
     public async enter() {

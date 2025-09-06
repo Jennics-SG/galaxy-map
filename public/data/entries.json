@@ -6,17 +6,21 @@
     },
     "Greenspan Projects": {
         "header": "Greenspan Projects",
-        "body": "I'm currently undertaking my juniorship with Greenspan Projects Ltd. So far I have been for development helping bring Puttify v2 to release. This included introducing a logging system, UI developments such as a leaderboard and helping with on-site deployments.\n\nI am also responsible for the development of DigiScoring, a plug & play system for any Mini-Golf course that can be customised for venues branding.",
+        "body": "I'm currently undertaking my juniorship with Greenspan Projects Ltd. So far I have been responsible for development, helping bring Puttify v2 to release. This included introducing a logging system, UI developments such as a leaderboard and helping with on-site deployments. Alongside providing support\n\nI am also responsible for the development of DigiScoring, a plug & play system for any Mini-Golf course that can be customised for venues branding.",
         "tint": "#34eb55"
     },
     "Winchester University": {
         "header": "Winchester University",
-        "body": "I have achieved a 1:1 in my studies at Winchester. So far I have created three large scale applications using JavaScript, Java & Python, and taken courses on Operating Systems and Cyber Security. For my dissertation I created an open source game engine, BangJs, which used PixiJs, Box2D and GSAP.",
+        "body": "While at winchester University I managed to achieve a 1:1. I took many modules pertaining to Operating Systems and Cyber Security. Alongside developing three full stack applications using Java, JavaScript and Python. For my dissertation I attempted to create a Game Engine, BangJs, which leveraged PixiJs, Box2D and GSAP",
         "tint": "#991df2"
     },
     "Lecturing": {
         "header": "South Hampshire College Group",
-        "body": "Being a Computing Lecturer with SHCG has allowed me to Develop critical skills in taking responsibility for a cohort of learners, through developing their curriculum and acting as a project manager for their larger projects. As part of my role as a lecturer I have built a deep understanding of Unreal Engine and Blender to teach these subjects to my students.",
+        "body": "Being a Computing Lecturer with SHCG allowed me to Develop critical skills in taking responsibility for a cohort of learners, through developing their curriculum and acting as a project manager for their larger projects. As part of my role as a lecturer I managed to ensure a whole class of 15+ learners achieved distinctions for their FMP that leveraged ExpressJs and EJS to create a full-stack application.",
         "tint": "#f79f6f"
+    },
+    "Skills": {
+        "header": "Skills",
+        "body": "OSX(6 Years); Windows(7 years); Debian/Arch(6 Years); FileZilla(5 Years); PuTTY(5 Years); VSCode(7 Years); JavaScript(6 Years); PixiJS(6 Years); HTML(6 Years); CSS(6 Years); TypeScript(3 Years); OOP(4 years); Node/ExpressJs(3 Years); Python(7 Years); MySQL(1 Year); MongoDB(3 Years); GSAP(2 Years);"
     }
 }
