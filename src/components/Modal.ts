@@ -55,13 +55,13 @@ export default class Modal extends Container {
         if (screenW <= 480) {
             this._width = 290;
             this._height = 520;
-            this._headerFont = 22;
-            this._bodyFont = 16;
+            this._headerFont = 20;
+            this._bodyFont = 14;
         } else if (screenW <= 768) {
             this._width = 480;
             this._height = 660;
             this._headerFont = 26
-            this._bodyFont = 22;
+            this._bodyFont = 20;
         } else if (screenW <= 1024) {
             this._width = 700;
             this._height = 600;
@@ -73,8 +73,6 @@ export default class Modal extends Container {
             this._headerFont = 36;
             this._bodyFont = 30;
         }
-
-        // if
 
         this.position.set(this._app.renderer.width / 2, this._app.screen.height / 2);
         this.buildSelf();
@@ -127,7 +125,6 @@ export default class Modal extends Container {
             },
             resolution: 2
         })
-        this._header.anchor.set(0, 0.5);
 
         const headerX = -this._width / 4;
         const headerY = -(this._height / 2) + this._header.height;
@@ -153,7 +150,7 @@ export default class Modal extends Container {
             },
             resolution: 2
         });
-
+        
         const bodyX = 0;
         const bodyY = (-this._body.height / 2) + this._header.height;
 
